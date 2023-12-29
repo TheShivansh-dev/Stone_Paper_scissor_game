@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>AllJSSIDE</title>
+        <!-- ********* Boostrap css file link's ********* -->
+        <!-- <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" /> -->
+        <!-- ********** Main templeate file link's ******** -->
+
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .box{
+                width: 250px;
+                border: 2px solid green;
+                margin: 100px auto;
+            }
+            input:first-child{
+                width: 80%;
+                padding: 5px;
+                font-size: 30px;
+                text-decoration: line-through;
+                text-align: center;
+                color: rgb(169, 165, 165);
+                background: url("../img/download.jpeg");
+                background-size: cover;
+            }
+            .reEnterCaptcha{
+                width: 100%;
+                padding: 5px;
+                font-weight: bold;
+                font-size: 25px;
+                text-align: center;
+                border: 2px solid gray;
+            }
+            button{
+                padding: 10px 30px;
+                font-weight: bold;
+                font-size: 20px;
+                background-color: darkblue;
+                color: #fff;
+                border: none;
+                margin-top: 5px;
+                transition: all 1s;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <input value="0" type="text" class="capTcha"></input>
+            <input onclick="reset(this)" type="image" src="../img/images.png" style="width: 20%; float: right; border-radius: 50%;">
+            <br>
+            <hr style="clear: both;" size="2px" color="black">
+            <input type="text" class="reEnterCaptcha" />
+            <button onclick="sub()">Submit</button>
+        </div>
+
+        <script>
+            let input = document.querySelector("input");
+            let value = "129AcFZ13EMEadfdMzCFE";
+            let str = "";
+            let str2 = "";
+            function fun(){
+                return randValue = Math.floor(Math.random()*value.length);
+
+            }
+            
+            for(let i = 0; i < 5; i++){
+                let v = fun();
+                str += value[v]
+            }
+            input.value = str; 
+            function reset(ele){
+                
+                for(let i = 0; i < 5; i++){
+                    let v = fun();
+                    str2 += value[v]
+                }
+                input.value = str2;
+                str2 = "";
+                ele.style.transform = rotateX(360);
+                ele.style.transition= " all 0.5s";
+                
+            }            
+            
+            function sub(){
+                let reEnterCaptcha = document.querySelector(".reEnterCaptcha");
+                if(reEnterCaptcha.value == input.value){
+                    alert("Succcess");
+                    reEnterCaptcha.value = "";
+                }else{
+                    alert("failed");
+                }
+            }
+
+        </script>
+    </body>
+</html>
